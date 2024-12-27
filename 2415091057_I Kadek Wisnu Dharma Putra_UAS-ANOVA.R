@@ -1,5 +1,4 @@
 library(readxl)
-library(car)
 library(lmtest)
 library(ggplot2)
 
@@ -15,23 +14,24 @@ group <- data$group
 shapiro_test <- shapiro.test(value)
 print(shapiro_test)
 
-# Uji asumsi : Homogenitas (Bartlett)
+# Assumption Test : Homogenitas (Bartlett)
 bartlett_test <- bartlett.test(value ~ group, data = data)
 print(bartlett_test)
 
-# Uji asumsi : Independensi (Durbin-Watson)
+# Assumption Test : Independensi (Durbin-Watson)
 model_lm <- lm(value ~ group, data = data)
 durbin_watson <- dwtest(model_lm)
 print(durbin_watson)
 
 
-#Uji Analisi ANOVA
+# ANOVA Analysis Test
 anova_model <- aov(value ~ group, data = data)
 anova_result <- summary(anova_model)
 print(anova_result)
 
 
-# Visualisasi Data
+# Data Visualization
+# Histogram
 ggplot(data, aes(x = group, y = value)) +
   geom_boxplot(fill = "skyblue", color = "darkblue") +
   labs(title = "Boxplot Response Berdasarkan Group", x = "Group", y = "Value") +
