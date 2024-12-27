@@ -31,7 +31,7 @@ print(anova_result)
 
 
 # Data Visualization
-# Histogram
+# Boxplot
 ggplot(data, aes(x = group, y = value)) +
   geom_boxplot(fill = "skyblue", color = "darkblue") +
   labs(title = "Boxplot Response Berdasarkan Group", x = "Group", y = "Value") +
